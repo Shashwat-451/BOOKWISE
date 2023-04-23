@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recently Released Books</title>
+
+
+     <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet"/>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+
+
+
+<!-- ***********************************************************    CSS  *************************************************-->
+
+
+
+    <style>
+        /* Center the page content */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: sans-serif;
+            margin: 0;
+        }
+
+        /* Style the header */
+        header {
+            background-color: #1976d2;
+            color: #fff;
+            padding: 1rem;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Style the book container */
+        .book-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1300px;
+            margin: 2rem 0;
+        }
+
+        /* Style the book card */
+        .book-card {
+
+            background-color: black;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 1rem;
+            padding: 1rem;
+            padding-top: 0rem;
+            width: 400px;
+        }
+.imag{
+     display: flex;
+  justify-content: center;
+  align-items: center;
+}
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+        /* Style the book image */
+        .book-image {
+            align-items: center;
+            display: block;
+            height: 200px;
+            margin-top: 15px;
+            margin-bottom: 1rem;
+            object-fit: cover;
+            width: 150px;
+            border-radius: 10px;
+        }
+
+        /* Style the book title */
+        .book-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Style the book author */
+        .book-author {
+             color: white;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+               font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Style the book published date */
+        .book-published-date {
+             color: white;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+               font-family: 'Times New Roman', Times, serif;
+            padding-bottom: 20px;
+        }
+
+        /* Style the book description */
+        .book-description {
+             color: white;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.5rem;
+            height: 15rem;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .imm{
+      width: 75px;
+      border-radius: 1000px;
+      margin-left: 30px;
+  }
+
+  .tit{
+      font-size: 1.2rem;
+      font-family: Georgia;
+      font-weight: bold;
+  }
+  .lis{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+
+    </style>
+
+
+</head>
+
+
+<!--*********************************************************     BODY    *******************************************************-->
+<body>
+
+ <nav class="navbar navbar-expand-lg" style="width: 100%">
+<!--        BOOKWISE-->
+        <a class="navbar-brand" href="#"><img class="imm" src="https://i.ibb.co/JK6CX76/bookwise-logo.png" alt="My Image"></a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse lis" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item ">
+              <a class="nav-link tit" href="/home">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link tit active" href="/" style=" border-bottom: 5px solid rgb(32, 206, 136);">New Releases <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link tit" href="/bestseller">Genre</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link tit" href="/recommend">Recommender</a>
+              </li>
+
+          </ul>
+        </div>
+      </nav>
+
+<!--*********************************************************     NAV ENDS    *******************************************************-->
+
+<!--    <header style="background-color: rgb(32, 206, 136)">-->
+<!--        <h1>Recently Released Books</h1>-->
+<!--    </header>-->
+
+ <h1  class="text-center" style="color:rgb(32, 206, 136);font-weight: bold;font-family:Georgia;font-size: 3.2rem;margin-top: 5vw;margin-bottom: 3vw;">Newly Published Books</h1>
+
+
+    <div class="book-container">
+        {% for book in books %}
+        <div class="book-card">
+
+        git    <div class="imag">
+            <img class="book-image" src="{{ book.image_link }}" alt="{{ book.title }}">
+                </div>
+            <h2 class="book-title text-center">{{ book.title }}</h2>
+            <p class="book-author text-center">By {{ book.author }}</p>
+            <p class="book-published-date text-center">Published on {{ book.published_date }}</p>
+            <p class="book-description" style="font-size: 1.5rem">{{ book.description }}</p>
+            <div class="imag" style="padding-top: 20px;padding-bottom: 20px;color: white;background-color: rgb(32, 206, 136)">
+<!--            <button style="width: 8rem;background-color: white;color: black;border-radius: 5%;border-color: white">Buy</button>-->
+                </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+
+
+ <!--*********************************************************     FOOTER    *******************************************************-->
+
+
+
+  <footer class="bg-dark text-center text-white" style="width: 100%">
+
+  <div class="container p-4 pb-0">
+
+    <section class="mb-4">
+
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-google"></i
+      ></a>
+
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-linkedin-in"></i
+      ></a>
+
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+
+  </div>
+
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2023 Copyright:
+    <a class="text-white" href="https://mdbootstrap.com/">BOOKWISE</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+
+
+</body>
+</html>

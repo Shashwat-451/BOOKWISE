@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Genre</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet"/>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+
+
+
+<!-- ***********************************************************    CSS  *************************************************-->
+
+   <style>
+
+.product {
+  position: relative;
+}
+
+.product-container {
+  display: flex;
+    margin-bottom: 40px;
+    margin-top: 30px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+    height: 100%;
+
+}
+
+.product-card {
+     align-items: center;
+    justify-content: center;
+  flex: 0 0 auto;
+  
+  width: 350px;
+    height: 480px;
+  margin-right: 20px;
+  scroll-snap-align: start;
+     background-color:rgb(32, 206, 136);
+}
+
+.product-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.product-image img {
+    align-items: center;
+    justify-content: center;
+  width: 55%;
+    height: 15vw;
+    padding: 20px;
+    padding-top: 40px;
+
+}
+
+.product-info {
+  padding: 10px;
+    height: 15vw;
+  text-align: center;
+    color: black;
+  background-color:rgb(32, 206, 136);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.pre-btn, .nxt-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  color: #333;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.pre-btn {
+  left: 0;
+}
+
+.nxt-btn {
+  right: 0;
+}
+button {
+  background-color: white; /* Green */
+  /*border: none;*/
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 70px;
+    border-color: white;
+}
+    .head{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    .imm{
+      width: 75px;
+      border-radius: 1000px;
+      margin-left: 30px;
+  }
+
+  .tit{
+      font-size: 1.2rem;
+      font-family: Georgia;
+      font-weight: bold;
+  }
+  .lis{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+
+
+    </style>
+</head>
+
+
+<!--*********************************************************     BODY    *******************************************************-->
+
+
+
+<body >
+
+ <nav class="navbar navbar-expand-lg ">
+        <a class="navbar-brand" href="#"><img class="imm" src="https://i.ibb.co/JK6CX76/bookwise-logo.png" alt="My Image"></a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse lis" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item ">
+              <a class="nav-link tit" href="/home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link tit" href="/">New Releases</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link tit active" style="border-bottom: 5px solid rgb(32, 206, 136);" href="/bestseller">Genre</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link tit" href="/recommend">Recommender</a>
+              </li>
+
+          </ul>
+        </div>
+      </nav>
+
+
+<!--*********************************************************     NAV ENDS    *******************************************************-->
+
+
+       <section class="product">
+  {% for category in categories %}
+           <h1  class="text-center" style="color: black;font-weight: bold;font-family:Georgia;font-size: 3.2rem;margin-top: 5vw;margin-bottom: 3vw">{{ category }}</h1>
+
+    <div class="product-container">
+      {% for book in category_books[category] %}
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="{{ book.image_link }}" alt="Book Cover">
+          </div>
+          <div class="product-info">
+            <h2 style="font-size:1.8rem " >{{ book.title }}</h2>
+            <p style="font-size:1.2rem ">By {{ book.authors }}</p>
+
+          <a style="color: black" href="{{ book.buy_link }}" target="_blank"><button >Buy Now</button></a>
+
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+
+</section>
+
+
+ <!--*********************************************************     FOOTER    *******************************************************-->
+
+
+
+  <footer class="bg-dark text-center text-white" style="width: 100%">
+
+  <div class="container p-4 pb-0">
+
+    <section class="mb-4">
+
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+
+
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-google"></i
+      ></a>
+
+
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-linkedin-in"></i
+      ></a>
+
+
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+
+  </div>
+
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+
+</footer>
+
+
+
+  <!--*********************************************************    JAVASCRIPT    *******************************************************-->
+
+
+<script>
+  const product = document.querySelector(".product");
+const productContainer = product.querySelector(".product-container");
+const productCards = product.querySelectorAll(".product-card");
+const preBtn = product.querySelector(".pre-btn");
+const nxtBtn = product.querySelector(".nxt-btn");
+const cardWidth = productCards[0].getBoundingClientRect().width;
+let currentIndex = 0;
+
+function moveToSlide(index) {
+  productContainer.style.transform = `translateX(-${index * cardWidth}px)`;
+  currentIndex = index;
+}
+
+function handlePrevClick() {
+  if (currentIndex === 0) {
+    moveToSlide(productCards.length - 1);
+    return;
+  }
+  moveToSlide(currentIndex - 1);
+}
+
+function handleNextClick() {
+  if (currentIndex === productCards.length - 1) {
+    moveToSlide(0);
+    return;
+  }
+  moveToSlide(currentIndex + 1);
+}
+
+preBtn.addEventListener("click", handlePrevClick);
+nxtBtn.addEventListener("click", handleNextClick);
+
+
+ </script>
+
+</body>
+</html>

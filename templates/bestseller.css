@@ -1,0 +1,29 @@
+h1 {
+    text-align: center;
+}
+
+.book {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.book img {
+    float: left;
+    margin-right: 20px;
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.book h2 {
+    margin-top: 0;
+}
+
+.book h3 {
+    margin-bottom: 10px;
+}
+
+.book p {
+    text-align: justify;
+}
